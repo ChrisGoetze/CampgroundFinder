@@ -15,11 +15,11 @@ var express         = require("express"),
 var commentRoutes       = require("./routes/comments"),
     campgroundRoutes    = require("./routes/campgrounds"),
     indexRoutes         = require("./routes/index");
-    
-mongoose.connect(process.env.DATABASEURL, {useMongoClient: true})
+
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v12"
+mongoose.connect(url, {useMongoClient: true})
     .then(() => console.log(`Database connected!`))
     .catch(err => console.log(`Database connection error: ${err.message}`));
-// mongoose.connect("mongodb://Chris:daisy@ds139685.mlab.com:39685/yelpcamp", {useMongoClient: true});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
